@@ -16,5 +16,7 @@ class Home(View):
         """
 
         node = Node.objects.get(name='B')
+        e = Node.objects.create(name='E', parent=node)
+        e.delete(keep_parents=True)
         child_nodes = node.get_children()
         return render(request, 'home/index.html', {'child_nodes': child_nodes})
